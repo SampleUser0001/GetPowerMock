@@ -24,7 +24,9 @@ hs_err_pid*
 
 # mvn 
 /target/*
+!/target/dependency
 !/target/dependency/*
+
 .classpath
 .project
 /.settings/
