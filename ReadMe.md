@@ -95,6 +95,44 @@ mvn dependency:copy-dependencies
 [INFO] ------------------------------------------------------------------------
 ```
 
+## 追加調査：カバレッジを取得する
+
+### JaCoCo導入
+
+pom.xmlに下記を追記。
+```
+    <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.2</version>
+        <executions>
+            <execution>
+                <goals>
+                    <goal>prepare-agent</goal>
+                </goals>
+            </execution>
+            <!-- attached to Maven test phase -->
+            <execution>
+                <id>report</id>
+                <phase>test</phase>
+                <goals>
+                    <goal>report</goal>
+                </goals>
+            </execution>
+        </executions>
+    </plugin>
+```
+
+テスト実行。
+```
+mvn clean
+mvn compile
+mvn test
+```
+
+カバレッジレポートが作成される。  
+target/site/jacoco/inde.htmlを開く。
+
 ## 参考
 
 [Qiita:PowerMockを使ってメソッド内で生成されるインスタンスをモックに置き換える](https://qiita.com/froide_h-hayashi/items/eeb2b5a429afdb79b05b)
@@ -106,3 +144,6 @@ mvn dependency:copy-dependencies
 [junit4 javadoc](https://junit.org/junit4/javadoc/latest/index.html)
 
 [powermock javadoc](https://javadoc.io/doc/org.powermock/powermock-api-mockito/latest/index.html)
+
+[Maven - JaCoCoコードカバレッジの例](https://www.codeflow.site/ja/article/maven__maven-jacoco-code-coverage-example)
+
