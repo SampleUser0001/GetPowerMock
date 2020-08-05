@@ -136,9 +136,16 @@ target/site/jacoco/inde.htmlを開く。
 ### PowerMockを使用したときにカバレッジが正常に取得できない
 
 #### NG
+
+インポート
+```
+import org.junit.runner.RunWith;
+import org.powermock.modules.junit4.PowerMockRunner;
 ```
 
-
+JUnitソース
+```
+@RunWith(PowerMockRunner.class)
 ```
 
 #### OK
