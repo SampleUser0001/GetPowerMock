@@ -9,15 +9,18 @@ import static org.hamcrest.CoreMatchers.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
 
-@RunWith(PowerMockRunner.class)
+import org.junit.Rule;
+import org.powermock.modules.junit4.rule.PowerMockRule;
+
 @PrepareForTest({Taisyou.class, Util.class})
 public class TaisyouTest {
+    
+    @Rule
+    public PowerMockRule rule = new PowerMockRule();
 
     /** テスト対象 */
     private Taisyou taisyou;

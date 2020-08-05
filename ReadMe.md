@@ -133,6 +133,38 @@ mvn test
 カバレッジレポートが作成される。  
 target/site/jacoco/inde.htmlを開く。
 
+### PowerMockを使用したときにカバレッジが正常に取得できない
+
+#### NG
+```
+
+
+```
+
+#### OK
+pom.xml
+```
+<dependency>
+  <groupId>org.powermock</groupId>
+  <artifactId>powermock-module-junit4-rule-agent</artifactId>
+  <version>1.6.4</version>
+  <scope>test</scope>
+</dependency>
+```
+
+インポート
+```
+import org.junit.Rule;
+import org.powermock.modules.junit4.rule.PowerMockRule;
+```
+
+JUnitソース
+```
+    @Rule
+    public PowerMockRule rule = new PowerMockRule();
+
+```
+
 ## 参考
 
 [Qiita:PowerMockを使ってメソッド内で生成されるインスタンスをモックに置き換える](https://qiita.com/froide_h-hayashi/items/eeb2b5a429afdb79b05b)
@@ -145,5 +177,9 @@ target/site/jacoco/inde.htmlを開く。
 
 [powermock javadoc](https://javadoc.io/doc/org.powermock/powermock-api-mockito/latest/index.html)
 
+カバレッジ取得：JaCoCo  
 [Maven - JaCoCoコードカバレッジの例](https://www.codeflow.site/ja/article/maven__maven-jacoco-code-coverage-example)
 
+カバレッジバグ  
+[PowerMock ECLEmmaカバレッジの問題](https://www.it-swarm.dev/ja/java/powermock-eclemma%E3%82%AB%E3%83%90%E3%83%AC%E3%83%83%E3%82%B8%E3%81%AE%E5%95%8F%E9%A1%8C/1046031264/)  
+[PowerMock disables EclEmma code coverage #422](https://github.com/powermock/powermock/issues/422)  
