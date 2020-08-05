@@ -16,11 +16,13 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest({Taisyou.class})
+@PrepareForTest({Taisyou.class, Util.class})
 public class TaisyouTest {
 
     /** テスト対象 */
     private Taisyou taisyou;
+    
+    private Util util;
 
     /**
      * 初期処理
@@ -28,6 +30,7 @@ public class TaisyouTest {
     @Before
     public void setup() {
         this.taisyou = new Taisyou();
+        this.util = new Util();
     }
 
     /**
@@ -47,6 +50,12 @@ public class TaisyouTest {
 
         // 評価
         Assert.assertSame(result, "test");
+    }
+    
+    @Test
+    public void searchTest2() {
+        assertThat(taisyou.search(), is("Util get"));
+        System.out.println("searchTest2 : " + taisyou.search());
     }
 
     /**
