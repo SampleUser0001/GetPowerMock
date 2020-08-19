@@ -5,10 +5,15 @@ import static org.junit.Assert.assertThat;
 import java.lang.reflect.Method;
 
 import static org.hamcrest.CoreMatchers.*;
+import static org.mockito.Mockito.when;
 
+import org.junit.Test;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import junit.framework.TestCase;
+
 import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
@@ -73,5 +78,20 @@ public class TaisyouTest {
         method.setAccessible(true);
 
         assertThat(method.invoke(mock), is("hoge"));
+    }
+    
+    /**
+     * staticメソッドのモック化
+     */
+    @Test
+    public void staticMethodTest() {
+        // モック化していない
+        assertThat(Taisyou.staticMethod(), is("staticメソッドのMockができていない"));
+
+        // staticメソッドモック化
+        PowerMockito.mockStatic(Taisyou.class);
+        when(Taisyou.staticMethod()).thenReturn("staticメソッドモック化済み");
+        assertThat(Taisyou.staticMethod(), is("staticメソッドモック化済み"));
+        
     }
 }

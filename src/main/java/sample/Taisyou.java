@@ -11,5 +11,9 @@ public class Taisyou {
     private String print() {
         return "いやいやそんなはずは";
     }
+    
+    public static String staticMethod() {
+        return "staticメソッドのMockができていない";
+    }
 
 }
