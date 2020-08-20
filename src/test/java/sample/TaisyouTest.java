@@ -21,6 +21,10 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.junit.Rule;
 import org.powermock.modules.junit4.rule.PowerMockRule;
 
+// import org.junit.runner.RunWith;
+// import org.powermock.modules.junit4.PowerMockRunner;
+
+// @RunWith(PowerMockRunner.class)
 @PrepareForTest({Taisyou.class, Util.class})
 public class TaisyouTest {
     
@@ -60,6 +64,10 @@ public class TaisyouTest {
         Assert.assertSame(result, "test");
     }
     
+    /**
+     * Util.get自体のテスト。
+     * searchTestではUtil.getをmockにしているので、カバレッジに加算されない。
+     */
     @Test
     public void searchTest2() {
         assertThat(taisyou.search(), is("Util get"));
@@ -85,8 +93,8 @@ public class TaisyouTest {
      */
     @Test
     public void staticMethodTest() {
-        // モック化していない
-        assertThat(Taisyou.staticMethod(), is("staticメソッドのMockができていない"));
+        // // モック化していない
+        // assertThat(Taisyou.staticMethod(), is("staticメソッドのMockができていない"));
 
         // staticメソッドモック化
         PowerMockito.mockStatic(Taisyou.class);
