@@ -18,18 +18,18 @@ import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 
-import org.junit.Rule;
-import org.powermock.modules.junit4.rule.PowerMockRule;
+// import org.junit.Rule;
+// import org.powermock.modules.junit4.rule.PowerMockRule;
 
-// import org.junit.runner.RunWith;
-// import org.powermock.modules.junit4.PowerMockRunner;
+import org.junit.runner.RunWith;
+import org.powermock.modules.junit4.PowerMockRunner;
 
-// @RunWith(PowerMockRunner.class)
+@RunWith(PowerMockRunner.class)
 @PrepareForTest({Taisyou.class, Util.class})
 public class TaisyouTest extends TestCase {
     
-    @Rule
-    public PowerMockRule rule = new PowerMockRule();
+    // @Rule
+    // public PowerMockRule rule = new PowerMockRule();
 
     /**
      * privateメソッドのテスト
@@ -44,5 +44,19 @@ public class TaisyouTest extends TestCase {
 
         assertThat(method.invoke(mock), is("hoge"));
     }
-    
+
+    /**
+     * staticメソッドのモック化
+     */
+    @Test
+    public void test_staticMethodTest() {
+        // モック化していない
+        assertThat(Taisyou.staticMethod(), is("staticメソッドのMockができていない"));
+
+        // staticメソッドモック化
+        PowerMockito.mockStatic(Taisyou.class);
+        PowerMockito.when(Taisyou.staticMethod()).thenReturn("staticメソッドモック化済み");
+        assertThat(Taisyou.staticMethod(), is("staticメソッドモック化済み"));
+        
+    }    
 }
