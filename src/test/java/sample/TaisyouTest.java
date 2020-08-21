@@ -21,50 +21,15 @@ import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.junit.Rule;
 import org.powermock.modules.junit4.rule.PowerMockRule;
 
+// import org.junit.runner.RunWith;
+// import org.powermock.modules.junit4.PowerMockRunner;
+
+// @RunWith(PowerMockRunner.class)
 @PrepareForTest({Taisyou.class, Util.class})
-public class TaisyouTest {
+public class TaisyouTest extends TestCase {
     
     @Rule
     public PowerMockRule rule = new PowerMockRule();
-
-    /** テスト対象 */
-    private Taisyou taisyou;
-    
-    private Util util;
-
-    /**
-     * 初期処理
-     */
-    @Before
-    public void setup() {
-        this.taisyou = new Taisyou();
-        this.util = new Util();
-    }
-
-    /**
-     * テスト
-     */
-    @Test
-    public void searchTest() throws Exception {
-        // テスト対象メソッド内で呼び出されるコンストラクタで返すモックオブジェクト生成
-        Util mock = Mockito.mock(Util.class);
-        Mockito.doReturn("test").when(mock).get();
-
-        // Utilクラスのコンストラクタで返されるインスタンスをモックに変更
-        PowerMockito.whenNew(Util.class).withNoArguments().thenReturn(mock);
-
-        // テスト対象の実行
-        String result = this.taisyou.search();
-
-        // 評価
-        Assert.assertSame(result, "test");
-    }
-    
-    @Test
-    public void searchTest2() {
-        assertThat(taisyou.search(), is("Util get"));
-        System.out.println("searchTest2 : " + taisyou.search());
-    }
 
     /**
      * privateメソッドのテスト
@@ -80,18 +45,4 @@ public class TaisyouTest {
         assertThat(method.invoke(mock), is("hoge"));
     }
     
-    /**
-     * staticメソッドのモック化
-     */
-    @Test
-    public void staticMethodTest() {
-        // モック化していない
-        assertThat(Taisyou.staticMethod(), is("staticメソッドのMockができていない"));
-
-        // staticメソッドモック化
-        PowerMockito.mockStatic(Taisyou.class);
-        when(Taisyou.staticMethod()).thenReturn("staticメソッドモック化済み");
-        assertThat(Taisyou.staticMethod(), is("staticメソッドモック化済み"));
-        
-    }
 }
