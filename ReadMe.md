@@ -191,12 +191,21 @@ JUnitソース
  T E S T S
 -------------------------------------------------------
 Running sample.TaisyouTest
-Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.241 sec <<< FAILURE!
-warning(junit.framework.TestSuite$1)  Time elapsed: 0.018 sec  <<< FAILURE!
-junit.framework.AssertionFailedError: No tests found in sample.TaisyouTest
-        at junit.framework.Assert.fail(Assert.java:57)
-        at junit.framework.TestCase.fail(TestCase.java:227)
-        at junit.framework.TestSuite$1.runTest(TestSuite.java:100)
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 2.885 sec <<< FAILURE!
+test_privateMethodTest(sample.TaisyouTest)  Time elapsed: 2.236 sec  <<< ERROR!
+org.mockito.exceptions.misusing.MissingMethodInvocationException: 
+when() requires an argument which has to be 'a method call on a mock'.
+For example:
+    when(mock.getArticles()).thenReturn(articles);
+
+Also, this error might show up because:
+1. you stub either of: final/private/equals()/hashCode() methods.
+   Those methods *cannot* be stubbed/verified.
+   Mocking methods declared on non-public parent classes is not supported.
+2. inside when() you don't call method on mock but on some other object.
+
+        at sample.TaisyouTest.test_privateMethodTest(TaisyouTest.java:40)
+        at junit.framework.TestCase.runTest(TestCase.java:176)
         at junit.framework.TestCase.runBare(TestCase.java:141)
         at junit.framework.TestResult$1.protect(TestResult.java:122)
         at junit.framework.TestResult.runProtected(TestResult.java:142)
@@ -208,10 +217,6 @@ junit.framework.AssertionFailedError: No tests found in sample.TaisyouTest
         at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
         at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
         at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
-        at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-        at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-        at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-        at java.lang.reflect.Method.invoke(Method.java:498)
         at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
         at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
         at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
@@ -221,9 +226,10 @@ junit.framework.AssertionFailedError: No tests found in sample.TaisyouTest
 
 Results :
 
-Failed tests:   warning(junit.framework.TestSuite$1): No tests found in sample.TaisyouTest
+Tests in error: 
+  test_privateMethodTest(sample.TaisyouTest): (..)
 
-Tests run: 1, Failures: 1, Errors: 0, Skipped: 0
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0
 ```
 
 ## 参考

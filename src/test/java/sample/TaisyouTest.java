@@ -35,7 +35,7 @@ public class TaisyouTest extends TestCase {
      * privateメソッドのテスト
      */
     @Test
-    public void privateMethodTest() throws Exception {
+    public void test_privateMethodTest() throws Exception {
         Taisyou mock = PowerMockito.spy(new Taisyou());
         PowerMockito.when(mock, "print").thenReturn("hoge");
 
