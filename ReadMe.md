@@ -184,6 +184,20 @@ JUnitソース
 
 ```
 
+## テスト結果
+
+```
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running sample.TaisyouTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.248 sec
+
+Results :
+
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+```
+
 ## 参考
 
 [Qiita:PowerMockを使ってメソッド内で生成されるインスタンスをモックに置き換える](https://qiita.com/froide_h-hayashi/items/eeb2b5a429afdb79b05b)
