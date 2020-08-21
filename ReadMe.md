@@ -224,7 +224,7 @@ Results :
 Failed tests:   warning(junit.framework.TestSuite$1): No tests found in sample.TaisyouTest
 
 Tests run: 1, Failures: 1, Errors: 0, Skipped: 0
-``
+```
 
 ## 参考
 
