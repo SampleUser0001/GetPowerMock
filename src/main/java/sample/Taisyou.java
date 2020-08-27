@@ -7,6 +7,10 @@ public class Taisyou {
 
         return util.get();
     }
+    
+    public String callPrivatePrint() {
+        return print();
+    }
 
     private String print() {
         return "いやいやそんなはずは";
