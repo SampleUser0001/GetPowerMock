@@ -1,6 +1,7 @@
 package sample;
 
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
 import java.lang.reflect.Method;
 
@@ -91,5 +92,13 @@ public class TaisyouTest {
         when(Taisyou.staticMethod()).thenReturn("staticメソッドモック化済み");
         assertThat(Taisyou.staticMethod(), is("staticメソッドモック化済み"));
         
+    }
+    
+    /**
+     * 必ずNGになるテストケース
+     */
+    @Test
+    public void ng() {
+        fail("Test failed");
     }
 }
