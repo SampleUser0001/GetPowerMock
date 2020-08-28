@@ -11,6 +11,10 @@ public class Taisyou {
     public String callPrivatePrint() {
         return print();
     }
+    
+    private String callPrivatePrint_meToo() {
+        return print();
+    }
 
     private String print() {
         return "いやいやそんなはずは";

@@ -73,7 +73,7 @@ public class TaisyouTest {
         Taisyou mock = PowerMockito.spy(new Taisyou());
         PowerMockito.when(mock, "print").thenReturn("hoge");
 
-        Method method = Taisyou.class.getDeclaredMethod("callPrivatePrint");
+        Method method = Taisyou.class.getDeclaredMethod("callPrivatePrint_meToo");
         method.setAccessible(true);
 
         assertThat(method.invoke(mock), is("hoge"));
