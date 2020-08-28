@@ -72,13 +72,13 @@ public class Taisyou2Test {
         Taisyou2 mock = PowerMockito.mock(Taisyou2.class);
         
         PowerMockito.spy(Taisyou2.class);
-        PowerMockito.doReturn("").when(Taisyou2.class, "getHogeValue");
+        PowerMockito.doReturn("mocked").when(Taisyou2.class, "getHogeValue");
 
         Method method = Taisyou2.class.getDeclaredMethod("editBean", Bean.class);
         method.setAccessible(true);
         method.invoke(mock, bean);
 
-        assertThat(bean.getValue(), is(""));
+        assertThat(bean.getValue(), is("mocked"));
     }
     
 }
