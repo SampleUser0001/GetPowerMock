@@ -8,6 +8,10 @@ import java.lang.reflect.Method;
 import static org.hamcrest.CoreMatchers.*;
 import static org.powermock.api.mockito.PowerMockito.when;
 
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Matchers.any;
+
+
 import sample.bean.Bean;
 import sample.Taisyou2;
 
@@ -56,7 +60,7 @@ public class Taisyou2Test {
     @Test
     public void privateStaticMethod_mocked() throws Exception {
         PowerMockito.spy(Taisyou2.class);
-        PowerMockito.doReturn("mocked").when(Taisyou2.class, "getHogeValue");
+        PowerMockito.doReturn("mocked").when(Taisyou2.class, "getHogeValue", anyString());
 
         assertThat(Taisyou2.callPrivateStatic() , is("mocked"));
     }
@@ -72,7 +76,7 @@ public class Taisyou2Test {
         Taisyou2 mock = PowerMockito.mock(Taisyou2.class);
         
         PowerMockito.spy(Taisyou2.class);
-        PowerMockito.doReturn("mocked").when(Taisyou2.class, "getHogeValue");
+        PowerMockito.doReturn("mocked").when(Taisyou2.class, "getHogeValue", anyString());
 
         Method method = Taisyou2.class.getDeclaredMethod("editBean", Bean.class);
         method.setAccessible(true);
