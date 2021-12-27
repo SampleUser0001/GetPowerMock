@@ -23,17 +23,19 @@ import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 
-import org.junit.Rule;
-import org.powermock.modules.junit4.rule.PowerMockRule;
+import org.junit.runner.RunWith;
+import org.powermock.modules.junit4.PowerMockRunner;
 
 import org.mockito.InjectMocks;
 
+
+/**
+ * staticメソッドをMockにする
+ */
+@RunWith(PowerMockRunner.class)
 @PrepareForTest({Taisyou2.class})
 public class Taisyou2Test {
     
-    @Rule
-    public PowerMockRule rule = new PowerMockRule();
-
     /**
      * public staticメソッドを普通にテストする
      */

@@ -17,19 +17,13 @@ import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 
-// import org.junit.Rule;
-// import org.powermock.modules.junit4.rule.PowerMockRule;
-
 import org.junit.runner.RunWith;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({Taisyou.class, Util.class})
 public class TaisyouTest {
-    
-    // @Rule
-    // public PowerMockRule rule = new PowerMockRule();
-
+   
     /**
      * privateメソッドのテスト
      */
