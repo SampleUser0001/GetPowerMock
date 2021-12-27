@@ -109,6 +109,8 @@ mvn dependency:copy-dependencies
 
 ## 追加調査：カバレッジを取得する
 
+カバレッジが0%なのは仕様。このプロジェクトはMockの実装サンプルなので、実装部分は通過しない。
+
 ### JaCoCo導入
 
 pom.xmlに下記を追記。

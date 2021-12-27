@@ -1,0 +1,9 @@
+version: '3'
+services:
+  nginx:
+    image: nginx
+    container_name: jacoco_container
+    ports: 
+      - "80:80"
+    volumes:
+      - ./jacoco:/usr/share/nginx/html/
