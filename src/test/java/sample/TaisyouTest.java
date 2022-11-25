@@ -1,23 +1,17 @@
 package sample;
 
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
 
 import java.lang.reflect.Method;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.mockito.Mockito.when;
+import static org.hamcrest.MatcherAssert.*;
+import static org.hamcrest.Matchers.*;
 
 import org.junit.Test;
-import org.junit.Assert;
-import org.junit.Before;
 import org.junit.runner.RunWith;
 
-import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 
-import org.junit.runner.RunWith;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 @RunWith(PowerMockRunner.class)
@@ -30,11 +24,18 @@ public class TaisyouTest {
     @Test
     public void test_privateMethodTest() throws Exception {
         Taisyou mock = PowerMockito.spy(new Taisyou());
+
+        // private printメソッドをmockにする。
+        // hogeが戻るようにする。
         PowerMockito.when(mock, "print").thenReturn("hoge");
 
+        // callPrivatePrint_meTooメソッドをリフレクションで呼び出す。
+        // privateメソッドで、printの戻り値をそのまま返す。
         Method method = Taisyou.class.getDeclaredMethod("callPrivatePrint_meToo");
         method.setAccessible(true);
 
+        // callPrivatePrint_meTooメソッドのテストを行う。
+        // mock化した結果が戻ってくることを確認する。
         assertThat(method.invoke(mock), is("hoge"));
     }
 
